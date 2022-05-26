@@ -1,0 +1,530 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+div#accordion2 .ui-accordion-header ,
+div#accordion .ui-accordion-header {
+    background: transparent;
+    border: none;
+    color: #474759;
+    line-height: 20px;
+    margin-right: auto;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: solid 1px #aeaec7;
+}
+#accordion2,
+div#accordion {
+    margin:  0 10px;
+}
+div#accordion2 .ui-accordion-content,
+div#accordion .ui-accordion-content {
+    border: none;
+    padding: 1px 19px;
+} 
+ .timeline-chart-controls {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.pillbox-toggle>button:last-child {
+    border-radius: 0 5px 5px 0;
+    border-right: 1px solid #ccccdc;
+}
+.pillbox-toggle {
+    margin-bottom: 10px;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+.pillbox-toggle .active {
+    background-color: #def5f7;
+    cursor: default;
+    font-weight: 800;
+}
+.pillbox-toggle>button:hover {
+    background-color: #def5f7;
+}
+.timeline-chart-controls .dropdown button {
+    min-width: 210px!important;
+}
+.pillbox-toggle>button {
+    background-color: #fff;
+    border: 1px solid #ccccdc;
+    border-radius: 0;
+    border-right: 0;
+    color: #4655d7;
+    font-size: 13px;
+    font-weight: 600;
+    outline-style: none;
+    padding: 3px 7px;
+    text-transform: none;
+}
+.pillbox-toggle>button:hover {
+    background-color: #def5f7;
+}
+.pillbox-toggle>button:first-child {
+    border-radius: 5px 0 0 5px;
+}
+.timeline-chart-controls .pillbox-toggle-container {
+    display: flex;
+}
+.analytic-content {
+    margin-top: 60px;
+    padding: 35px;
+    border: solid 1px #aeaec7;
+} 
+.analytics-content {
+    padding: 33px;
+    margin-top: 115px;
+}
+.sticky-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.page-insights {
+    display: flex;
+}
+.update-nag.notice.notice-warning.inline {
+    margin-left: 240px;
+}
+.page-insights .analytics-filter-panel-wrapper{
+   width: 213px;
+    position:relative;
+}
+
+.page-insights .analytics-main-pane-wrapper {
+    width: 82%;
+    overflow: hidden;
+    position: relative;
+}
+.compare-period-wrapper input,.compare-period-wrapper select {
+    border: none;
+    border-bottom: solid 1px;
+    border-radius: 0;
+    border-color: #aeaec7;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0;
+    text-align: center;
+}
+.compare-period-wrapper span.selected {
+    font-weight: 600;
+}
+
+.nc-flat-date-range-picker .flatpickr,
+.nc-flat-date-range-picker .dropdown select {
+    border: 1px solid #ccccdc;
+    margin-left: 8px;
+    text-align:center;
+    font-weight:600;
+}
+.nc-flat-date-range-picker .dropdown select{
+    width:150px;
+}
+.nc-flat-date-range-picker .flatpickr{
+    width:215px
+    margin-right:0 !important;
+}
+.ana-AnalyticsFilterPanel {
+    position: fixed;
+    height: 100%;
+    width: 213px;
+    border-right: solid 1px #aeaec7;
+    top: 52px;
+    background: #ffffff;
+    overflow: auto;
+}
+.insights-header h3 {
+    margin-top: 0;
+    font-size: 24px;
+}
+.ndl-SecondaryTab {
+    align-items: center;
+    border-bottom: 1px solid #ccccdc;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    overflow-x: auto;
+}
+.page-insights .analytics-header {
+background-color: #fff;
+    overflow: visible;
+    padding: 20px 30px 0;
+    /* position: absolute; */
+    z-index: 1;
+    /* width: 100%; */
+    position: fixed;
+    width: 68.6%;
+    top: 50px;
+    right: 0;
+}
+.ndl-SecondaryTab--medium .ndl-SecondaryTab-option {
+    border-bottom: 2px solid transparent;
+    font-size: 14px;
+    line-height: 20px;
+    margin-right: 25px;
+}
+/**/
+.summary-wrapper {
+    display: flex;
+}
+
+.summary-wrapper .metric-container {
+    width: 20%;
+    text-align: center;
+}
+
+.summary-wrapper .metric-container svg {
+    width: 20px;
+}
+.summary-wrapper .metric-container .value-container .delta-container {
+    position: relative;
+    display: inline-block;
+    width: 0;
+    height: 0;
+}
+ 
+.summary-wrapper .metric-container .value-container .delta-container .label-delta {
+    position: absolute;
+    text-align: left;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0;
+    top: -12px;
+    left: 22px;
+    right: -50px;
+}
+.ndl-SecondaryTab li.ndl-SecondaryTab-item {
+    margin: 0;
+}
+
+.ndl-SecondaryTab li.ndl-SecondaryTab-item .ndl-SecondaryTab-option.ndl-Option {
+    padding-bottom: 10px;
+}
+
+.ndl-SecondaryTab li.ndl-SecondaryTab-item .ndl-SecondaryTab-option.ndl-Option.is-active {
+    border-color: #4655d7;
+    color: #191932;
+    cursor: default;
+    font-weight: 600;
+}
+.summary-wrapper .metric-container .value-container .delta-container .label-icon {
+    position: absolute;
+    width: 12px;
+    top: -17px;
+    left: 8px;
+}
+.summary-wrapper .metric-container .value-container {
+    margin-bottom: 14px;
+    text-align: center;
+    position: relative;
+    cursor: default;
+}
+.summary-wrapper .metric-container .value-container .current {
+    font-size: 28px;
+    font-family: Hurme Geometric Sans,Helvetica Neue,Arial,sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 28px;
+    color: #191932;
+}
+.summary-wrapper .metric-container .summary-bar-icon {
+    margin-top: 24px;
+    margin-bottom: 14px;
+    width: 20px;
+    height: 20px;
+    color: #74748b;
+    display: block;
+    width: 100%;
+}
+.summary-wrapper .metric-container .value-container .delta-container .label-icon svg {
+    width: 14px;
+    margin-top: 7px;
+}
+.sticky-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.rfloat, .row-header .row-action-wrapper {
+    float: right;
+}
+ 
+.nc-date-range-picker-wrapper .controls {
+    display: inline-grid;
+}
+
+#container-inner-acc div.content {
+ display: none;
+ border-bottom: solid 1px #aeaec7;
+ padding: 10px;
+}
+div#container-inner-acc h3 {
+    cursor: pointer;
+    font-size: 13px;
+    margin-bottom: 0;
+    padding: 0 15px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #aeaec7;
+}
+.filter {
+    padding: 0 !important;
+    width: 100%;
+    margin: 0;
+}
+.campaigns-filter-button-wrapper button.ndl-Button {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    background: transparent;
+    color: #4655d7;
+    padding: 5px 10px;
+    border: solid 1px #c1c1c1;
+    border-radius: 2px;
+}
+
+.campaigns-filter-button-wrapper button.ndl-Button span.nc-icon {
+    width: 12%;
+}
+
+.campaigns-filter-button-wrapper span.ndl-Button-label {
+    font-size: 10px;
+    display: inline-block;
+    text-align: right;
+    width: 90%;
+    line-height: 14px;
+    font-weight: bold;
+}
+
+.campaigns-filter-button-wrapper button.ndl-Button svg rect,.campaigns-filter-button-wrapper button.ndl-Button svg path {
+    fill: #4655d7;
+}
+div#analytics-report-tab-table {
+    overflow: hidden;
+    /* margin: 0 30px; */
+    margin-top: 40px;
+}
+
+.ui-tabs .ui-tabs-nav {
+    background: transparent;
+    border: none;
+}
+
+.ui-tabs .ui-tabs-nav  .ui-state-active {
+    background: transparent;
+    border: none;
+    /* border-bottom: solid 1px #000 !important; */
+}
+
+.ui-tabs .ui-tabs-nav .ui-state-active a {
+    color: #2f1932;
+    font-weight: 600;
+    border-bottom: solid 3px #504cd7;
+}
+.ui-tabs .ui-tabs-nav {
+    padding:20px !important;
+    padding-bottom: 0 !important;
+}
+
+.ui-tabs .ui-tabs-nav li a {
+    /* height: 25px; */
+    padding: 10px 0 !important;
+    margin-right: 30px;
+    background: transparent;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.ui-tabs .ui-tabs-nav li {
+    background: transparent;
+    border: none;
+    height: 25px;
+}
+
+.wp-person a:focus .gravatar, a:focus, a:focus .media-icon img {
+    box-shadow: none;
+}
+.ui-tabs .ui-tabs-nav li a:hover {
+    border-bottom: solid 3px #f0f0f1;
+}
+.dataTables_length {
+    display: none;
+}
+.dataTables_filter {
+    float: left !important;
+    margin-bottom:15px;
+}
+.dataTables_wrapper {
+    margin-top: 20px;
+}
+.dataTables_wrapper .dataTable thead tr th {
+    background: #ededf4;
+    padding: 15px!important;
+}
+.dataTable thead tr td:first-child ,
+.dataTable thead tr th:first-child {
+    border-right: solid 2px #c1c1c1;
+    width: 210px !important;
+    text-align: center !important;
+}
+.dataTable tbody tr td span {
+    clear: both;
+    display: block;
+    text-align: center;
+}
+.trending-number {
+    font-size: 20px;
+    font-weight: 700;
+}
+.label-delta.delta-positive {
+    color: #19ab50;
+    margin-top:5px
+}
+span.trending-number.ng-binding.ng-scope {
+    /* display: inline; */
+    /* flex-wrap: nowrap; */
+    /* flex-direction: column; */
+    text-align: center;
+    vertical-align: middle;
+}
+
+span.text {
+    display: inline !important;
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    color: #767676;
+}
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 15px 10px !important;
+}
+.dataTable thead tr th {
+    background: #f0f0f1;
+    padding: 13px 0 !important;
+}
+
+table.dataTable {
+    margin-top: 20px !important;
+}
+div#wpfooter {
+    display: none !important;
+}
+.drp-calendar.right {
+    display: none !important;
+}
+span.trending-number.ng-binding.ng-scope {
+    display: block;
+}
+
+thead tr {
+    text-align: center;
+    line-height: 1.5;
+}
+table#DataTables_Table_0 tr td {
+    text-align: center;
+}
+span.empty-dhash svg {width: 20px;}
+.data-content tbody td {
+    border-bottom: solid 1px  #b5b5b5;
+}
+
+.data-content  tr td:first-child {border-right:solid 2px #b5b5b5;text-align: left !important;}
+
+.low,
+span.nc-icon.label-icon.low svg g polygon {fill:red; color:red !important;}
+
+.high,
+span.nc-icon.label-icon.high svg g polygon {fill:#19ab50; color:#19ab50 !important;}
+
+span.nc-icon.label-icon.high svg {
+    transform: rotate(
+178deg
+);
+    height: 23px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.analytics-action {
+    display: grid;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+.analytics-action .trending-number.active {
+    background: #f5f7fa;
+}
+.analytics-action .trending-number {
+    box-shadow: 1px 1px 2px 0px #f5f7fa;
+    padding: 15px;
+    border: solid 1px #f5f7fa;
+}
+.trending-number .actions-count-wrapper {
+    padding-top: 20px;
+}
+.trending-number .actions-count-wrapper .label {
+    font-size: 13px;
+    line-height: 1.3em;
+    margin-bottom: 5px;
+}
+.trending-number .actions-count-wrapper .chart-label {
+    color: #191932;
+    font-size: 13px;
+}
+.trending-number .actions-count-wrapper .segment-chart {
+    align-items: center;
+    display: flex;
+}
+.trending-number .actions-count-wrapper .segment-chart.missing-value {
+    padding-top: 20px;
+    /* margin-left: -24px; */
+}
+.trending-number .actions-count-wrapper .count {
+    color: #191932;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.3em;
+}
+.analytics-action .trending-number h4.trending-number-title {
+    margin: 0;
+    color: #474759;
+    font-size: 13px;
+    height: 20px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.social-chart {
+    padding: 20px;
+    border: solid 1px #cecece;
+    margin-top: 20px;
+}
+
+.social-chart canvas#chart-area {
+    margin: 20px;
+}
+ .social-chart-head h4.wrapper-graph-heading {
+         font-weight: 700;
+    font-style: normal;
+    font-size: 18px;
+    float: left;
+}
+
+.pillbox-toggle-container {
+    float: right;
+    margin-top: 20px;
+}
+.notice.notice-error,
+.error {
+    display:none
+}
+.my-chart {
+    height: 225px;
+}
