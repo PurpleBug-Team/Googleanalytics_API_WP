@@ -9,16 +9,15 @@ $analytics = initializeAnalytics();
  
 $ga_token = "Token key";
 $client = new Google_Client();
-$client->setApplicationName("***");
-// $client->setClientId('234023961878-5sf1sprm6cldkis4ll8pvkuj0khutkb4.apps.googleusercontent.com');
-$client->setClientId('268521901173-otufo6u6vgo7b2fillrkgtvk344a1rf3.apps.googleusercontent.com');
-// $client->setClientSecret('sV2acWQiBwH1qyAmDRgslztm');
-$client->setClientSecret('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');
-$client->setRedirectUri('https://wp-test.momsformomsph.com');
-$client->setDeveloperKey('AIzaSyCk06SE0X7qWo2L0sGWmL3wzdGnDFzais8');
-$client->setScopes(array("https://www.googleapis.com/auth/analytics.readonly"));
+
+$client->setApplicationName("Pbb analytic");
+$client->setClientId('432292128512-fcikru3ubou70aci5ggnbv9i2co9hj0l.apps.googleusercontent.com'); //Get this in https://prnt.sc/MlneOI9VAFvd
+$client->setClientSecret('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'); //Get this in https://prnt.sc/MlneOI9VAFvd
+$client->setRedirectUri('https://wordpress.purplebugprojects.com/'); 
+$client->setDeveloperKey('AIzaSyBtWxSXvd_cuyettZ8JwgJUeFvVDBK6amQ'); //API Keys Generated in  Google console API Credential  https://prnt.sc/AFF_SPhK-RKu
+$client->setScopes(array("https://www.googleapis.com/auth/analytics.readonly")); 
 $client->setApprovalPrompt('force');
-$client->setAccessType('online');
+$client->setAccessType('offline');
 $client->setAccessToken($ga_token);  
 
 
@@ -43,7 +42,7 @@ $monthbefore = date('Y-m-d', (time() - (30 * 24 * 60 * 60)));
 function initializeAnalytics()
 {
 
-  $KEY_FILE_LOCATION = __DIR__ . '/client_secret_234023961878-5sf1sprm6cldkis4ll8pvkuj0khutkb4.apps.googleusercontent.com.json';
+  $KEY_FILE_LOCATION = __DIR__ . '/client_secret.json';
 
 
   $client = new Google_Client();

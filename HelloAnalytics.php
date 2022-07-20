@@ -4,8 +4,12 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 $analytics = initializeAnalytics();
-//$response = getReport($analytics);
-//printResults($response);
+$response = getReport($analytics);
+// // printResults($response);
+echo '<pre>';
+print_r($response);
+echo '</pre>';
+die();
  
  
  
@@ -21,7 +25,7 @@ function initializeAnalytics()
   // Use the developers console and download your service account
   // credentials in JSON format. Place them in this directory or
   // change the key file location if necessary.
-  $KEY_FILE_LOCATION = __DIR__ . '/winged-idiom-326123-cc33aee1187e.json';
+  $KEY_FILE_LOCATION = __DIR__ . '/service-account-credentials.json';
 
   // Create and configure a new client object.
   $client = new Google_Client();
@@ -47,7 +51,7 @@ function getReport($analytics) {
   $startdate = date("Y-M-D");
   $enddate = date("Y-M-D");
   
-  $VIEW_ID = "251234819";
+  $VIEW_ID = "214986634";
 
   // Create the DateRange object.
   $dateRange = new Google_Service_AnalyticsReporting_DateRange();

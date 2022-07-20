@@ -1,0 +1,48 @@
+=Request to get Code=
+https://accounts.google.com/o/oauth2/auth?
+ scope=https://www.googleapis.com/auth/analytics.readonly&
+ access_type=offline&
+include_granted_scopes=true&
+state=state_parameter_passthrough_value&
+ redirect_uri=https://wordpress.purplebugprojects.com/&
+ response_type=code&
+ client_id=432292128512-fcikru3ubou70aci5ggnbv9i2co9hj0l.apps.googleusercontent.com
+
+=======================================================
+= Results code use the code value=
+https://wordpress.purplebugprojects.com/?state=state_parameter_passthrough_value&code=4%2F0AdQt8qgo4d4jazT-OF2b_aPdQkrs8UL4yAIqthpntBrGT9aSMNDuYNIVtsLDooIOMhu-vw&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fanalytics.readonly
+// 2nd result
+https://wordpress.purplebugprojects.com/?state=state_parameter_passthrough_value&code=4%2F0AdQt8qibDwIelb3pEIuNgt3dIsFeZc8fhfywaqlxH3r6GK5rMy99J8KpBrJ1hEnmUIAM3w&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fanalytics.readonly
+//3rd
+https://wordpress.purplebugprojects.com/?state=state_parameter_passthrough_value&code=4%2F0AdQt8qhFKL2duY2PbDCRjRymYS39e2n3_7kmARG_98nE5GltY73X6f1hoppmN16XmTow-A&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fanalytics.readonly
+=======================================================
+= Request to get access token =
+
+
+
+
+
+ curl \
+--request POST \
+--data "code=4%2F0AdQt8qibDwIelb3pEIuNgt3dIsFeZc8fhfywaqlxH3r6GK5rMy99J8KpBrJ1hEnmUIAM3w&client_id=432292128512-fcikru3ubou70aci5ggnbv9i2co9hj0l.apps.googleusercontent.com&client_secret=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&redirect_uri=https://wordpress.purplebugprojects.com&grant_type=authorization_code" \
+https://accounts.google.com/o/oauth2/token
+
+
+ -d "code=4%2F0AdQt8qibDwIelb3pEIuNgt3dIsFeZc8fhfywaqlxH3r6GK5rMy99J8KpBrJ1hEnmUIAM3w&client_id=432292128512-fcikru3ubou70aci5ggnbv9i2co9hj0l.apps.googleusercontent.com&client_secret=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&redirect_uri=https://wordpress.purplebugprojects.com/&grant_type=authorization_code" \ https://accounts.google.com/o/oauth2/token
+https://wordpress.purplebugprojects.com/?state=state_parameter_passthrough_value&code=4%2F0AdQt8qjeqGgNiOSze2ApQQgxbEdU_6oPo3vjF3IYwNYt_gEryO0Sm4NWXRj7rUn1kju2tg&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fanalytics.readonly
+
+
+
+https://accounts.google.com/o/oauth2/auth?client_id=432292128512-fcikru3ubou70aci5ggnbv9i2co9hj0l.apps.googleusercontent.com&redirect_uri=https://wordpress.purplebugprojects.com/&response_type=code&scope=email
+
+; https://wordpress.purplebugprojects.com/?code=4%2F0AdQt8qiwOxZMOJ-Ouairfqk3Cqm2y0dQhZY31Woq03pKINAr_vZerCI1nfIrffjLk9WHsA&scope=email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20openid&authuser=0&prompt=consent
+https://accounts.google.com/o/oauth2/token&client_id=432292128512-fcikru3ubou70aci5ggnbv9i2co9hj0l.apps.googleusercontent.com&client_secret=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&redirect_uri=https://wordpress.purplebugprojects.com/&code=4%2F0AdQt8qiwOxZMOJ-Ouairfqk3Cqm2y0dQhZY31Woq03pKINAr_vZerCI1nfIrffjLk9WHsA&grant_type=authorization_code
+
+
+https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A24351574&start-date=2011-01-01&end-date=2012-02-01&metrics=ga%3Apageviews&pp=1&key=
+
+https://www.googleapis.com/analytics/v3/data/ga?access_token=4%2F0AdQt8qgo4d4jazT-OF2b_aPdQkrs8UL4yAIqthpntBrGT9aSMNDuYNIVtsLDooIOMhu-vw&ids=grand-nimbus-330303&dimensions=ga%3ApagePath&metrics=ga%3AbounceRate%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&start-date=2022-07-07&end-date=2022-07-19&start-index=1
+
+
+
+

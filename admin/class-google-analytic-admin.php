@@ -52,9 +52,10 @@ class Google_Analytic_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
-        $this->view_id = "251234819";
-        $this->access_token = 'ya29.a0ARrdaM_0uVKKW1gxwt4Gb2az1WSeF1WK8mbPl7lwNAFMRfwPQV_nhacrxruAwo0fxHvbeO6-DKT-gn7fb5oFF2qignqD5gfVZk-7lfviNw6OalvOzYCCfU5rZuJO61g1V6qaS9I7bp6CveMbw3WocDQVJpG1Ljc';
-        $this->ga_id = urlencode('ga:193221711');
+        // $this->access_token = 'ya29.a0ARrdaM_0uVKKW1gxwt4Gb2az1WSeF1WK8mbPl7lwNAFMRfwPQV_nhacrxruAwo0fxHvbeO6-DKT-gn7fb5oFF2qignqD5gfVZk-7lfviNw6OalvOzYCCfU5rZuJO61g1V6qaS9I7bp6CveMbw3WocDQVJpG1Ljc';
+        $this->access_token = '4%2F0AdQt8qgo4d4jazT-OF2b_aPdQkrs8UL4yAIqthpntBrGT9aSMNDuYNIVtsLDooIOMhu-vw';
+        $this->view_id = "214986634";
+        $this->ga_id = urlencode('ga:312403239');
 
 
 	}
@@ -613,12 +614,17 @@ class Google_Analytic_Admin {
      $latest_prev = strtotime("-10 day");
      $latest = ($end =='') ? date('Y-m-d',$latest_prev):$end;
  
-
+$latest = '2022-07-19';
     $data = 'https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids='.$this->ga_id.'&dimensions=ga%3ApagePath&metrics=ga%3AbounceRate%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&start-date='.$prestent_date_prev2.'&end-date='.$latest.'&start-index=1';
 
     $GA_prev = $this->GA_curl($data);
 
-  
+  echo '<pre>';
+  // print_r($data );
+  print_r( $GA_prev  );
+  echo '</pre>';
+  die();
+
        $total =array();
        foreach($GA_prev->rows as $prev_data){
           
