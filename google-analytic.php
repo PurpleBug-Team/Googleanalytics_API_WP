@@ -80,7 +80,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-google-analytic.php';
 function run_google_analytic() {
 
 	$plugin = new Google_Analytic();
-	require plugin_dir_path( __FILE__ ) . 'HelloAnalytics.php';
+	// require plugin_dir_path( __FILE__ ) . 'HelloAnalytics.php';
 	// require plugin_dir_path( __FILE__ ) . 'ClientAnalytic.php';
 	$plugin->run();
 

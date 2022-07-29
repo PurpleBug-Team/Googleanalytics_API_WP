@@ -52,10 +52,12 @@ class Google_Analytic_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
-        // $this->access_token = 'ya29.a0ARrdaM_0uVKKW1gxwt4Gb2az1WSeF1WK8mbPl7lwNAFMRfwPQV_nhacrxruAwo0fxHvbeO6-DKT-gn7fb5oFF2qignqD5gfVZk-7lfviNw6OalvOzYCCfU5rZuJO61g1V6qaS9I7bp6CveMbw3WocDQVJpG1Ljc';
-        $this->access_token = '4%2F0AdQt8qgo4d4jazT-OF2b_aPdQkrs8UL4yAIqthpntBrGT9aSMNDuYNIVtsLDooIOMhu-vw';
-        $this->view_id = "214986634";
-        $this->ga_id = urlencode('ga:312403239');
+        // $this->access_token = 'ya29.A0AVA9y1vFSU7MQ-wr3PRuLBV5hNUjsHyDLET_tqy3yccvxvJty0tihJU3yLbr0m_nN6a9ZcloKviJQU1jlHQchjT1X-RYOV0HhehYRnjJ6mFOfIVR_cjsl47Rl0m0mtJjt1Te3Qd-6fE32jvLWFfgwf9efA1iYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4R0JYekJENXhlRXVZVi1JOHkwTF9SUQ0163';
+        $this->access_token = 'ya29.A0AVA9y1vU9hbjCJINRYj2phSLae3T6Ces3I97s3nNFLvEIv-VGjgHUzFrJ3V0GJreVew8SVuZn3JnKZF6Y-fmknjD3Mg9qOg7FcxF1Anh71zh-sosKLoQxGX3pD8UPwQ-RrDnpRhU-8edPrrw5Q6-NIA6RE50YwYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4TEJjMWRxSV9ESlljR05vS3JrMzdMUQ0165';
+        // $this->access_token = '4%2F0AdQt8qgo4d4jazT-OF2b_aPdQkrs8UL4yAIqthpntBrGT9aSMNDuYNIVtsLDooIOMhu-vw';
+        $this->view_id = "UA-162521807-1'";
+        // $this->ga_id = urlencode('ga:312403239');
+        $this->ga_id = urlencode('ga:214986634');
 
 
 	}
@@ -426,8 +428,7 @@ class Google_Analytic_Admin {
           $averagerate_prev[] = $this->Query('https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids='.$this->ga_id .'&dimensions=ga%3AuserType&metrics=ga%3AbounceRate&start-date='.$prev_start.'&end-date='.$prev_end.'');
             
 
-          
-          
+         
 
           include( plugin_dir_path( __FILE__ ) . '/partials/analytic-data-returning.php' );
           break;
@@ -614,16 +615,18 @@ class Google_Analytic_Admin {
      $latest_prev = strtotime("-10 day");
      $latest = ($end =='') ? date('Y-m-d',$latest_prev):$end;
  
-$latest = '2022-07-19';
+// $latest = '2022-07-19';
     $data = 'https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids='.$this->ga_id.'&dimensions=ga%3ApagePath&metrics=ga%3AbounceRate%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&start-date='.$prestent_date_prev2.'&end-date='.$latest.'&start-index=1';
 
     $GA_prev = $this->GA_curl($data);
 
-  echo '<pre>';
+  // echo '<pre>';
   // print_r($data );
-  print_r( $GA_prev  );
-  echo '</pre>';
-  die();
+  // print_r( $GA_prev   );
+  // // print_r(  $this->prev_view('2022-07-13','2022-07-26','data') );
+  // // print_r(  $this->my_google_analytic_chart_view() );
+  // echo '</pre>';
+  // die();
 
        $total =array();
        foreach($GA_prev->rows as $prev_data){
@@ -642,11 +645,11 @@ $latest = '2022-07-19';
 
     $array = array(
             
-            'articleview'=> array_sum($total8),
-            'pageviews'=>$GA_prev->totalsForAllResults->{'ga:pageviews'},
-            'uniquePageviews'=>$GA_prev->totalsForAllResults->{'ga:uniquePageviews'},
-            'avgTimeOnPage'=>$GA_prev->totalsForAllResults->{'ga:avgTimeOnPage'},
-            'AbounceRate' =>  $GA_prev->totalsForAllResults->{'ga:AbounceRate'},
+      'articleview'=> array_sum($total8),
+      'pageviews'=>$GA_prev->totalsForAllResults->{'ga:pageviews'},
+      'uniquePageviews'=>$GA_prev->totalsForAllResults->{'ga:uniquePageviews'},
+      'avgTimeOnPage'=>$GA_prev->totalsForAllResults->{'ga:avgTimeOnPage'},
+      'AbounceRate' =>  $GA_prev->totalsForAllResults->{'ga:AbounceRate'},
             );
     return $array;
   }
@@ -832,19 +835,19 @@ $latest = '2022-07-19';
 	    die();
 	}
  
- 
-	
+
 	public function prev_view ($startdate,$enddate, $analytics){
-	    
+    $analytics = $this->initialize_analytic();
+  
 	   // $r = ($month != '')? $month:'month';
 	    $VIEW_ID = $this->view_id;
 
-	    $start =  strtotime($startdate);
+	    $start =  strtotime('2022-07-13');
         $date_add_year = strtotime("-1 month",$start);
         $date_add = strtotime('-10 days',$date_add_year);
         $prestent_date_start = date('Y-m-d', $date_add); 
         
-        $end = strtotime($enddate);
+        $end = strtotime('2022-07-19');
         $date_add_year = strtotime("-1 month",$end);
         $prestent_date_end = date('Y-m-d', $date_add_year);   
        

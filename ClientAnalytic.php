@@ -15,7 +15,7 @@ $client->setClientId('432292128512-fcikru3ubou70aci5ggnbv9i2co9hj0l.apps.googleu
 $client->setClientSecret('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'); //Get this in https://prnt.sc/MlneOI9VAFvd
 $client->setRedirectUri('https://wordpress.purplebugprojects.com/'); 
 $client->setDeveloperKey('AIzaSyBtWxSXvd_cuyettZ8JwgJUeFvVDBK6amQ'); //API Keys Generated in  Google console API Credential  https://prnt.sc/AFF_SPhK-RKu
-$client->setScopes(array("https://www.googleapis.com/auth/analytics.readonly")); 
+$client->setScopes(array("https://www.googleapis.com/auth/analytics.readonly","https://www.googleapis.com/auth/analytics")); 
 $client->setApprovalPrompt('force');
 $client->setAccessType('offline');
 $client->setAccessToken($ga_token);  
