@@ -48,18 +48,13 @@ class Google_Analytic_Admin {
 	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
-	   
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
-        // $this->access_token = 'ya29.A0AVA9y1vFSU7MQ-wr3PRuLBV5hNUjsHyDLET_tqy3yccvxvJty0tihJU3yLbr0m_nN6a9ZcloKviJQU1jlHQchjT1X-RYOV0HhehYRnjJ6mFOfIVR_cjsl47Rl0m0mtJjt1Te3Qd-6fE32jvLWFfgwf9efA1iYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4R0JYekJENXhlRXVZVi1JOHkwTF9SUQ0163';
-        $this->access_token = 'ya29.A0AVA9y1vU9hbjCJINRYj2phSLae3T6Ces3I97s3nNFLvEIv-VGjgHUzFrJ3V0GJreVew8SVuZn3JnKZF6Y-fmknjD3Mg9qOg7FcxF1Anh71zh-sosKLoQxGX3pD8UPwQ-RrDnpRhU-8edPrrw5Q6-NIA6RE50YwYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4TEJjMWRxSV9ESlljR05vS3JrMzdMUQ0165';
-        // $this->access_token = '4%2F0AdQt8qgo4d4jazT-OF2b_aPdQkrs8UL4yAIqthpntBrGT9aSMNDuYNIVtsLDooIOMhu-vw';
-        $this->view_id = "UA-162521807-1'";
-        // $this->ga_id = urlencode('ga:312403239');
-        $this->ga_id = urlencode('ga:214986634');
 
-
+    $this->access_token = 'ya29.A0AVA9y1sUadGjc8dFHQ7mvDBBaXTOmkHohDqQNRmmcy-ZQ_y55cBtNSE_xfPkcMPK-esPer_uVKJWhh3CwsTzmG1OxdNhpr4UyGWASpzghrkrHJwPzF0sjEU7qABiqcgLJAUFj3uGnNH8LxLaJKIYNUweQ4NCtQYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4NWtYV3c1RG1TT1pRXzNlRm9oM09oUQ0165';
+    $this->view_id = "UA-162521807-1'";
+    $this->ga_id = urlencode('ga:214986634');
 	}
 
 
@@ -619,39 +614,32 @@ class Google_Analytic_Admin {
     $data = 'https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids='.$this->ga_id.'&dimensions=ga%3ApagePath&metrics=ga%3AbounceRate%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&start-date='.$prestent_date_prev2.'&end-date='.$latest.'&start-index=1';
 
     $GA_prev = $this->GA_curl($data);
+    if($GA_prev->error->code == 401){
+      // Refresh the access token
+      // $this->access_token = refresh_token();
+      // GA_prev_query($start,$end)
+    }else{
+      $total =array();
+      foreach($GA_prev->rows as $prev_data){
+         
+        $expolded = explode('/article/',$prev_data[0]);
 
-  // echo '<pre>';
-  // print_r($data );
-  // print_r( $GA_prev   );
-  // // print_r(  $this->prev_view('2022-07-13','2022-07-26','data') );
-  // // print_r(  $this->my_google_analytic_chart_view() );
-  // echo '</pre>';
-  // die();
+       // if( !empty($expolded)) continue;
+        if (strpos($prev_data[0], '/article/') !== false)  {
+             $total8[] =$prev_data[2];
+         }
 
-       $total =array();
-       foreach($GA_prev->rows as $prev_data){
-          
-         $expolded = explode('/article/',$prev_data[0]);
-
-        // if( !empty($expolded)) continue;
-         if (strpos($prev_data[0], '/article/') !== false)  {
-              $total8[] =$prev_data[2];
-          }
-
-       }
-
- 
-
-
+      }
     $array = array(
-            
-      'articleview'=> array_sum($total8),
-      'pageviews'=>$GA_prev->totalsForAllResults->{'ga:pageviews'},
-      'uniquePageviews'=>$GA_prev->totalsForAllResults->{'ga:uniquePageviews'},
-      'avgTimeOnPage'=>$GA_prev->totalsForAllResults->{'ga:avgTimeOnPage'},
-      'AbounceRate' =>  $GA_prev->totalsForAllResults->{'ga:AbounceRate'},
-            );
-    return $array;
+           
+     'articleview'=> array_sum($total8),
+     'pageviews'=>$GA_prev->totalsForAllResults->{'ga:pageviews'},
+     'uniquePageviews'=>$GA_prev->totalsForAllResults->{'ga:uniquePageviews'},
+     'avgTimeOnPage'=>$GA_prev->totalsForAllResults->{'ga:avgTimeOnPage'},
+     'AbounceRate' =>  $GA_prev->totalsForAllResults->{'ga:AbounceRate'},
+           );
+      return $array;
+    }
   }
   function GA_curl($data){
     $cURLConnection = curl_init();
@@ -1025,7 +1013,4 @@ class Google_Analytic_Admin {
         return $jsonArrayResponse2;
         
   }
-	
-	
-
 }

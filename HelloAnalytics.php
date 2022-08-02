@@ -2,15 +2,9 @@
 
 // Load the Google API PHP Client Library.
 require_once __DIR__ . '/vendor/autoload.php';
-
 $analytics = initializeAnalytics();
-$response = getReport($analytics);
-// // printResults($response);
-echo '<pre>';
-print_r($response);
-echo '</pre>';
-die();
- 
+// $response = getReport($analytics);
+
  
  
  
