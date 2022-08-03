@@ -50,9 +50,11 @@ class Google_Analytic_Admin {
 	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
-
-    $this->access_token = 'ya29.A0AVA9y1sUadGjc8dFHQ7mvDBBaXTOmkHohDqQNRmmcy-ZQ_y55cBtNSE_xfPkcMPK-esPer_uVKJWhh3CwsTzmG1OxdNhpr4UyGWASpzghrkrHJwPzF0sjEU7qABiqcgLJAUFj3uGnNH8LxLaJKIYNUweQ4NCtQYUNnWUtBVEFTQVRBU0ZRRTY1ZHI4NWtYV3c1RG1TT1pRXzNlRm9oM09oUQ0165';
+    $this->access_token = $_SESSION['token']['access_token'];
+    echo '<pre>';
+    print_r($_SESSION);
+    echo '</pre>';
+    // $this->access_token = 'ya29.A0AVA9y1tYSkC3UXdv5cx0vVOPFPgVp5-RnoB_eGaKBFjJ0Bo06AXo1KEPBkVBeV0MirKkH_cj4lUFqS3Aivf-c30MQuhyGiFHZxbzyLRdOOz2Ht15Ss817U9-3WS-NvZyhry_jz9aIAf-GFZ2JoYAjqBwqUe4ZAaCgYKATASATASFQE65dr86Sejm_3vR82LIQ7Xuea6BQ0165';
     $this->view_id = "UA-162521807-1'";
     $this->ga_id = urlencode('ga:214986634');
 	}
@@ -431,9 +433,6 @@ class Google_Analytic_Admin {
           $action_chart_tab =  $this->action_chart();
           include( plugin_dir_path( __FILE__ ) . '/partials/analytic-action.php' );
           break;
-        case "ROI":
-          echo "Your favorite color is green!";
-          break;
         default:
             echo '<div class="analytics">';
             include( plugin_dir_path( __FILE__ ) . 'partials/range-char-data.php' );
@@ -616,8 +615,8 @@ class Google_Analytic_Admin {
     $GA_prev = $this->GA_curl($data);
     if($GA_prev->error->code == 401){
       // Refresh the access token
-      // $this->access_token = refresh_token();
-      // GA_prev_query($start,$end)
+      include( plugin_dir_path( __FILE__ ) . '/google-api-login.php' );
+
     }else{
       $total =array();
       foreach($GA_prev->rows as $prev_data){
@@ -625,9 +624,9 @@ class Google_Analytic_Admin {
         $expolded = explode('/article/',$prev_data[0]);
 
        // if( !empty($expolded)) continue;
-        if (strpos($prev_data[0], '/article/') !== false)  {
+        // if (strpos($prev_data[0], '/article/') !== false)  {
              $total8[] =$prev_data[2];
-         }
+        //  }
 
       }
     $array = array(
@@ -968,9 +967,9 @@ class Google_Analytic_Admin {
          $expolded = explode('/article/',$data[0]);
 
          // if( !empty($expolded)) continue;
-         if (strpos($data[0], '/article/') !== false)  {
+        //  if (strpos($data[0], '/article/') !== false)  {
               $total[] =$data[2];
-          }
+          // }
 
        }
 

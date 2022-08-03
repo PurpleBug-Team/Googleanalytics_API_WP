@@ -14,7 +14,7 @@
  
 
 ?>
- 
+ <?php $img_path = 'http://wordpress.purplebugprojects.com/wp-content/uploads/2022/08/ajax-loading-icon-2.gif'; ?>
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="analytics-pane-wrapper ng-scope ng-isolate-scope page-insights ">
 	<div class="analytics-filter-panel-wrapper">
@@ -27,57 +27,9 @@
 			    </p>
 			  </div>
 			  <h3>Filters</h3>
+			  
 			  <div class="filter">
 					<div id='container-inner-acc'>
-					  <h3>Campaigns</h3>
-					  <div class='content' style="display:block"> 
-					  	<div class="campaigns-filter-button-wrapper">
-						    <button class="ndl-Button ndl-Button--default ndl-Button--small" type="button">
-						        <span class="nc-icon ndl-Icon ndl-Button-icon">
-						            <i class="nc-icon-wrapper">
-						                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16">
-						                    <g transform="translate(0, 0)">
-						                        <rect x="6" y="12" fill="#444444" width="4" height="4"></rect>
-						                        <rect x="6" fill="#444444" width="4" height="4"></rect>
-						                        <rect x="12" y="12" fill="#444444" width="4" height="4"></rect>
-						                        <rect y="12" fill="#444444" width="4" height="4"></rect>
-						                        <path data-color="color-2" fill="#444444" d="M3,9h4v2h2V9h4v2h2V8c0-0.6-0.4-1-1-1H9V5H7v2H2C1.4,7,1,7.4,1,8v3h2V9z"></path>
-						                    </g>
-						                </svg>
-						            </i>
-						        </span>
-						        <span class="ndl-Button-label">Select Campaigns</span>
-						    </button>
-						</div>
-
-					  </div>
-					  <h3>Content Type</h3>
-					  <div class='content'> 
-					  	<button class="ndl-Button ndl-Button--inline ndl-Button--small ndl-OptionGroup-selectAll" type="button"><span class="ndl-Button-label">Select all</span></button>
-					  	<ul class="tick-to-check">
-					  		<li><label><input type="checkbox" class="field-set">Licensed</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Original</label></li>
-					  	</ul>
-					  </div>
-					  <h3>Word Count</h3>
-					  <div class='content'>  No Content </div>
-					  <h3>Publish Date</h3>
-					  <div class='content'>  No Content </div>
-					  <h3>Authors</h3>
-					  <div class='content'> 
-					  	<button class="ndl-Button ndl-Button--inline ndl-Button--small ndl-OptionGroup-selectAll" type="button"><span class="ndl-Button-label">Select all</span></button>
-					  	<ul class="tick-to-check">
-					  		<li><label><input type="checkbox" class="field-set">Dee del Carmen</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Denize del Carmen Dolor Dollaga - Technical</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Consultant, LafargeHolcim Aggregates Inc. Dolor Dollaga, Technical</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Consultant at LafargeHolcim Aggregates Inc.</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Don Gil Carreon</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Editoral Staff</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Editorial Name</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Editorial Staff</label></li>
-					  	</ul>
-					  	
-					  </div>
 					  <h3>Channels</h3>
 					  <div class="content channel">
 					  	<ul class="tick-to-check">
@@ -97,90 +49,8 @@
 					  		<li><label><input type="checkbox" class="field-set">Lafarge Holcim</label></li>
 					  	</ul>
 					   </div>
-					  <h3>Wordpress Tags</h3>
-					  <div class='content'> 
-					    <ul class="tick-to-check">
-					  		<li><label><input type="checkbox" class="field-set">A4 priority group</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Lafarge Holcim</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Lafarge Holcim</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Lafarge Holcim</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Lafarge Holcim</label></li>
-					  	</ul>
-					  </div>
-					  <h3>Wordpress Categories</h3>
-					  <div class='content'>
-					  	<ul class="tick-to-check">
-					  		<li><label><input type="checkbox" class="field-set">Ads</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Arch Designs</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Buhay Builder</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Buhay Contractor</label></li>
-					  		<li><label><input type="checkbox" class="field-set">ConstrucTips</label></li>
-					  		<li><label><input type="checkbox" class="field-set">COVID-19 Updates</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Curated</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Featured</label></li>
-					  	</ul>
-					  </div>
-					  
-					  <h3>Content Format</h3>
-					  <div class='content'> 
-					  	<ul class="tick-to-check">
-					  		<li><label><input type="checkbox" class="field-set">Article</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Infographic</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Listicle</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Quiz</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Survey</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Video</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Webinar</label></li>
-					  	</ul>
 					   </div>
-					  <h3>Content Pillar</h3>
-					  <div class='content'> 
-					  	<ul class="tick-to-check">
-					  		<li><label><input type="checkbox" class="field-set">Buhay Contractor</label></li>
-					  		<li><label><input type="checkbox" class="field-set">ConstrucTips</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Health & Safety</label></li>
-					  		<li><label><input type="checkbox" class="field-set">News & Innovation</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Professional Learning</label></li>
-					  	</ul>
-					  </div>
-					  <h3>Journey Stage</h3>
-					  <div class='content'>
-					  	<ul class="tick-to-check">
-					  		<li><label><input type="checkbox" class="field-set">Bottom of the Funnel</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Middle of the Funnel</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Top of the Funnel</label></li>
-					  	</ul>
-					   </div>
-					  <h3>Project Stage</h3>
-					  <div class='content'> 
-					  	<ul class="tick-to-check">
-					  		<li><label><input type="checkbox" class="field-set">Acceptance</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Bid</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Construction</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Design</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Groundwork</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Mobilization</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Planning</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Prospecting</label></li>
-					  	</ul>
-					   </div>
-					  <h3>Target Audience</h3>
-					  <div class='content'>
-					  	<ul class="tick-to-check">
-					  		<li><label><input type="checkbox" class="field-set">General Public</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Influencers</label></li>
-					  		<li><label><input type="checkbox" class="field-set">National Contractor</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Private Contractor</label></li>
-					  		<li><label><input type="checkbox" class="field-set">SBC</label></li>
-					  		<li><label><input type="checkbox" class="field-set">SPC</label></li>
-					  		<li><label><input type="checkbox" class="field-set">Specifiers</label></li>
-					  	</ul>
-					  </div>
-					</div>
-			      
 			  </div>
-			   
-			   
 			</div>
 		</div>
 	</div>
@@ -266,9 +136,6 @@
 			                <li data="action" class="ndl-SecondaryTab-item">
 			                    <div class="ndl-SecondaryTab-option ndl-Option" role="menuitem"><span class="ndl-Option-label">Actions</span></div>
 			                </li>
-			                <li data="ROI" class="ndl-SecondaryTab-item">
-			                    <div class="ndl-SecondaryTab-option ndl-Option" role="menuitem"><span class="ndl-Option-label">ROI</span></div>
-			                </li>
 			            </ul>
 			        </div>
 			    </div>
@@ -279,9 +146,16 @@
 		</div>
 		<div class="analytics-content analytics-main-pane ng-scope">
 			<!-- Content Header-->
- 		
- 				<?php include( plugin_dir_path( __FILE__ ) . '/analytic-data.php' ); ?>
- 				<?php include( plugin_dir_path( __FILE__ ) . '/analytic-datatable.php' ); ?>	
+ 				<?php
+				if(isset($_SESSION['token'])){
+					// include( plugin_dir_path( __FILE__ ) . '/analytic-data.php' ); 
+					include( plugin_dir_path( __FILE__ ) . 'google-api-login.php' );
+					die();
+				}else{
+					include( plugin_dir_path( __FILE__ ) . '/analytic-data.php' ); 
+					include( plugin_dir_path( __FILE__ ) . '/analytic-datatable.php' );
+				}
+				?>	
 
 		</div>
 			
@@ -292,7 +166,8 @@
 </div>
 <div id="loading" style="display: none;">
     <div class="sticky"></div> 
-    <img class="load-image" src="https://wordpress.afterhours.com.ph/wp-content/plugins/purple/admin/partials/event/images/loader.gif">
+
+    <img class="load-image" src="<?=$img_path;?>">
 </div>
 <style>
 div#loading {
@@ -307,7 +182,7 @@ position: fixed;
 }
 div#loading img.load-image {
     position: absolute;
-    top: 50%;
+    top: 30%;
 }
 </style>
 <script>

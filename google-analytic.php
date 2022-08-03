@@ -40,6 +40,8 @@ define( 'GOOGLE_ANALYTIC_VERSION', '1.0.0' );
 define('GOOGLE_PATH', WP_PLUGIN_DIR.'/google-analytic');
 
 
+
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-google-analytic-activator.php
@@ -84,8 +86,39 @@ function run_google_analytic() {
 
 }
 run_google_analytic();
- 
- 
+
+
+add_action('rest_api_init', function () {
+	register_rest_route( 'hello-elementor/v1', 'access-token',array(
+				  'methods'  => 'GET',
+				  'callback' => 'getAPIData'
+		));
+  });
+  function getAPIData($request) {
+	require_once GOOGLE_PATH. '/google-api/vendor/autoload.php';
+	$gClient = new Google_Client();
+	$gClient->setClientId("432292128512-fcikru3ubou70aci5ggnbv9i2co9hj0l.apps.googleusercontent.com");
+	$gClient->setClientSecret("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");
+	$gClient->setApplicationName("Vicode Media Login");
+	$gClient->setRedirectUri("https://wordpress.purplebugprojects.com/wp-json/hello-elementor/v1/access-token");
+	$gClient->setDeveloperKey('AIzaSyBtWxSXvd_cuyettZ8JwgJUeFvVDBK6amQ');
+	$gClient->setAccessType('offline');
+	// $gClient->addScope("https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email");
+	$gClient->setScopes(['https://www.googleapis.com/auth/analytics.readonly','https://www.googleapis.com/auth/analytics']);
+	// login URL
+	$login_url = $gClient->createAuthUrl();
+	$parameters = $request->get_params();
+	if (isset($parameters['code'])) {
+		$token = $gClient->fetchAccessTokenWithAuthCode($parameters['code']);
+		$_SESSION['token'] = $token ;
+	}
+	
+	echo '<pre>';
+	print_r($_SESSION );
+	echo '</pre>';
+	die();
+  }
+//   http://pinoybuilders.test/wp-json/hello-elementor/v1/access-token
 
 
 
