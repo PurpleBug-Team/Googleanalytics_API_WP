@@ -1,10 +1,4 @@
 <?php
-	//print_r($GA_prev);
-	// echo '<pre>';
-	// print_r($GA_prev);
-	// echo '</pre>';
-	// die();
-
 	$article_1 = $article_total['total'] < $GA_prev['articleview'] ?  $article_total['total'] / $GA_prev['articleview'] * 100 : $GA_prev['articleview'] / $article_total['total'] * 100;
 	$article_status_2 = $article_total['total'] < $GA_prev['articleview'] ?  'low': 'high';
 
@@ -17,9 +11,6 @@
 
 	$rateview_1 = $avgTimeOnPage < $GA_prev['avgTimeOnPage'] ?  $avgTimeOnPage / $GA_prev['avgTimeOnPage'] * 100 : $GA_prev['avgTimeOnPage'] / $data['avgTimeOnPage']['total'] * 100;
 	$rate_status_2 = $avgTimeOnPage < $GA_prev['avgTimeOnPage'] ?  'low': 'high';
- 
- 
-
  ?>
 
 			<div class="summary-wrapper undefined">

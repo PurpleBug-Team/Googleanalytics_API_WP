@@ -39,12 +39,8 @@
 			<?php 
 
 				global $wpdb;
-
-			
 				 	foreach($all_datatable->rows as $row4){
 						$expolded = explode('/article/',$row4[0]);
-
-						
 
 							$exlug = explode('?',str_replace("article/", "",$row4[0]));
 							$exile = explode('?',$row4[0]);
@@ -56,19 +52,14 @@
 							$post_artcle = $wpdb->get_results ($query_artcle);
  
 							$total_table[] = array('pagepath'=>$row4[0],'pagetitle'=>$row4[1],'pagedate'=>$row4[2],'pageview'=>$row4[3],'uniqueview'=>$row4[4],'avgtime'=>date("H:i:s",round($row4[5])));
-						
-						if (strpos($row4[0], '/article/') !== false)  {	
+		
+						// if (strpos($row4[0], '/article/') !== false)  {	
 							$total_article_pageview[] = $row4[1];
-						
-						}
+						// }
 						$total_pageview[] = $row4[3];  
 						$total_unique[] = $row4[4];  
-						$total_avtime[] = $row4[5]; 
-						
-						
-								    
+						$total_avtime[] = $row4[5]; 		    
 					} 
-	 
 				?>
 					<ul>
 						    <li><a href="#tabs-1">CONTENT</a></li>
@@ -97,7 +88,7 @@
 						    	<thead>
 						    		<tr>
 						    			<td>
-						    				<span class="trending-number ng-binding ng-scope"><?php echo array_sum($total_article_pageview); ?><span class="text">Articles Viewed</span></span>
+						    				<span class="trending-number ng-binding ng-scope"><?php echo array_sum( $total_article_pageview ); ?><span class="text">Articles Viewed</span></span>
 						    				<span class="label-delta <?php echo $article_status_2; ?> delta-positive"> <?php echo $article_status_3.' '.round($article_1); ?>% <span class="text">over prev. period</span></span>
 						    			</td>
 						    			<td>
