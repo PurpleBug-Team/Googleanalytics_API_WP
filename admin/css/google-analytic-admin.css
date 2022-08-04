@@ -157,7 +157,7 @@ background-color: #fff;
     z-index: 1;
     /* width: 100%; */
     position: fixed;
-    width: 68.6%;
+    width: calc(100% - 380px);
     top: 50px;
     right: 0;
 }

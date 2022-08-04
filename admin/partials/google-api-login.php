@@ -15,9 +15,6 @@ $gClient->setScopes(['https://www.googleapis.com/auth/analytics.readonly','https
 
 // login URL
 $login_url = $gClient->createAuthUrl();
-echo '<pre>';
-print_r($login_url);
-echo '</pre>';
  ?>
  <style>
 .form-group input{
@@ -31,19 +28,18 @@ echo '</pre>';
     width: 50%;
     margin: auto;
     box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+    text-align: center;
+}
+.login-analytic-data button{
+    padding: 10px;
+    background: #4f4bd7;
+    color: #fff;
+    border: none;
+    font-weight: bold;
 }
  </style>
 <form action='' method="POST" class="login-analytic-data">
-    <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
+    <p>Login to google account to generate access token. </p>
     <?php $login_url = 'https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=offline&client_id=432292128512-fcikru3ubou70aci5ggnbv9i2co9hj0l.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fwordpress.purplebugprojects.com%2Fwp-json%2Fhello-elementor%2Fv1%2Faccess-token&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fanalytics.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fanalytics&approval_prompt=auto';?>
     <button onclick="window.location = '<?php echo $login_url; ?>'" type="button" class="btn btn-danger">Login with Google</button>
 </form>

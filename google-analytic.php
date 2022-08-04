@@ -110,13 +110,10 @@ add_action('rest_api_init', function () {
 	$parameters = $request->get_params();
 	if (isset($parameters['code'])) {
 		$token = $gClient->fetchAccessTokenWithAuthCode($parameters['code']);
-		$_SESSION['token'] = $token ;
 	}
-	
-	echo '<pre>';
-	print_r($_SESSION );
-	echo '</pre>';
-	die();
+	update_option('gapi_access_token',$token['access_token']);
+	header("Location: ".get_site_url()."/wp-admin/admin.php?page=analytics");
+	exit();
   }
 //   http://pinoybuilders.test/wp-json/hello-elementor/v1/access-token
 

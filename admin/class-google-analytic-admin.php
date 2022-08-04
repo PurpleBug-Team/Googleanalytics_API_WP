@@ -50,11 +50,9 @@ class Google_Analytic_Admin {
 	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-    $this->access_token = $_SESSION['token']['access_token'];
-    echo '<pre>';
-    print_r($_SESSION);
-    echo '</pre>';
-    // $this->access_token = 'ya29.A0AVA9y1tYSkC3UXdv5cx0vVOPFPgVp5-RnoB_eGaKBFjJ0Bo06AXo1KEPBkVBeV0MirKkH_cj4lUFqS3Aivf-c30MQuhyGiFHZxbzyLRdOOz2Ht15Ss817U9-3WS-NvZyhry_jz9aIAf-GFZ2JoYAjqBwqUe4ZAaCgYKATASATASFQE65dr86Sejm_3vR82LIQ7Xuea6BQ0165';
+
+    $token = get_option('gapi_access_token',$token['access_token']);
+    $this->access_token =  $token ;
     $this->view_id = "UA-162521807-1'";
     $this->ga_id = urlencode('ga:214986634');
 	}
@@ -613,10 +611,10 @@ class Google_Analytic_Admin {
     $data = 'https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids='.$this->ga_id.'&dimensions=ga%3ApagePath&metrics=ga%3AbounceRate%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&start-date='.$prestent_date_prev2.'&end-date='.$latest.'&start-index=1';
 
     $GA_prev = $this->GA_curl($data);
-    if($GA_prev->error->code == 401){
+    if($GA_prev->error->code === 401){
       // Refresh the access token
-      include( plugin_dir_path( __FILE__ ) . '/google-api-login.php' );
-
+      include( plugin_dir_path( __FILE__ ) . 'partials/google-api-login.php' );
+      die();
     }else{
       $total =array();
       foreach($GA_prev->rows as $prev_data){
