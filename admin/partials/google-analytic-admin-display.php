@@ -147,7 +147,7 @@
 		<div class="analytics-content analytics-main-pane ng-scope">
 			<!-- Content Header-->
  				<?php
-			$token = get_option('gapi_access_token',$token['access_token']);
+			 $token = get_option('gapi_access_token','');
 				if(!isset($token)){
 					include( plugin_dir_path( __FILE__ ) . 'google-api-login.php' );
 					die();
@@ -182,7 +182,7 @@ position: fixed;
 }
 div#loading img.load-image {
     position: absolute;
-    top: 50%;
+    top: 30%;
 }
 </style>
 <script>

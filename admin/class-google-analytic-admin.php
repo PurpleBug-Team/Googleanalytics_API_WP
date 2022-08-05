@@ -51,6 +51,7 @@ class Google_Analytic_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
+
     $token = get_option('gapi_access_token','');
     $ga_id = get_option('ga_id','');
     $this->access_token = $token;
@@ -61,6 +62,7 @@ class Google_Analytic_Admin {
     add_action( 'admin_init', array( $this, 'setup_init_options' ) );
    
    
+
 	}
 
 
@@ -611,8 +613,9 @@ class Google_Analytic_Admin {
     $data = 'https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids='.$this->ga_id.'&dimensions=ga%3ApagePath&metrics=ga%3AbounceRate%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&start-date='.$prestent_date_prev2.'&end-date='.$latest.'&start-index=1';
 
     $GA_prev = $this->GA_curl($data);
-    if($GA_prev->error->code == 401){
+    if($GA_prev->error->code === 401){
       // Refresh the access token
+
        include( plugin_dir_path( __FILE__ ) . 'partials/google-api-login.php' );
       die();
     }else{

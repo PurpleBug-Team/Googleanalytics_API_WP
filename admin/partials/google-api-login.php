@@ -3,6 +3,7 @@
  * Login Form to generate access token
  */
 
+
 require_once GOOGLE_PATH. '/google-api/vendor/autoload.php';
 // Get Credentials
 $client_id =  get_option( 'client_id','' );
@@ -17,6 +18,7 @@ $gClient->setApplicationName("Vicode Media Login");
 $gClient->setRedirectUri($redirect_uri);
 $gClient->setDeveloperKey($developer_key);
 $gClient->setAccessType('offline');
+
 $gClient->setScopes(['https://www.googleapis.com/auth/analytics.readonly','https://www.googleapis.com/auth/analytics']);
 
 // login URL
@@ -36,6 +38,7 @@ $login_url = $gClient->createAuthUrl();
     border: none;
     font-weight: bold;
 }
+
 .login-analytic-data{
     padding: 40px;
     width: 50%;
@@ -45,7 +48,7 @@ $login_url = $gClient->createAuthUrl();
 }
  </style>
 <form action='' method="POST" class="login-analytic-data">
-    <p>Login to you google account to generate access token.</p>
+    <p>Login to google account to generate access token. </p>
     <button onclick="window.location = '<?php echo $login_url; ?>'" type="button" class="btn btn-danger">Login with Google</button>
 </form>
 <?php
