@@ -51,10 +51,18 @@ class Google_Analytic_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
-    $token = get_option('gapi_access_token',$token['access_token']);
-    $this->access_token =  $token ;
-    $this->view_id = "UA-162521807-1'";
-    $this->ga_id = urlencode('ga:214986634');
+
+    $token = get_option('gapi_access_token','');
+    $ga_id = get_option('ga_id','');
+    $this->access_token = $token;
+    // $this->ga_id = urlencode('ga:214986634'); 
+    $this->ga_id = urlencode( $ga_id ); 
+
+    // Initialize Settings
+    add_action( 'admin_init', array( $this, 'setup_init_options' ) );
+   
+   
+
 	}
 
 
@@ -115,11 +123,6 @@ class Google_Analytic_Admin {
         
 
  
-	}
-	
-	public function  initialize_analytic(){
-	    include( GOOGLE_PATH . '/HelloAnalytics.php' );
-	    return $analytics;
 	}
   function view_page_analytic(){
     
@@ -445,7 +448,7 @@ class Google_Analytic_Admin {
 
  
 	public function my_google_analytic(){
-    
+
         $latest2 = date('Y-m-d');
 	      $date_add2 = strtotime("-10 day");
         $prestent_date2 = date('Y-m-d', $date_add2);
@@ -607,18 +610,17 @@ class Google_Analytic_Admin {
      $latest_prev = strtotime("-10 day");
      $latest = ($end =='') ? date('Y-m-d',$latest_prev):$end;
  
-// $latest = '2022-07-19';
     $data = 'https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids='.$this->ga_id.'&dimensions=ga%3ApagePath&metrics=ga%3AbounceRate%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&start-date='.$prestent_date_prev2.'&end-date='.$latest.'&start-index=1';
 
     $GA_prev = $this->GA_curl($data);
     if($GA_prev->error->code === 401){
       // Refresh the access token
-      include( plugin_dir_path( __FILE__ ) . 'partials/google-api-login.php' );
+
+       include( plugin_dir_path( __FILE__ ) . 'partials/google-api-login.php' );
       die();
     }else{
       $total =array();
       foreach($GA_prev->rows as $prev_data){
-         
         $expolded = explode('/article/',$prev_data[0]);
 
        // if( !empty($expolded)) continue;
@@ -819,114 +821,7 @@ class Google_Analytic_Admin {
 	    include( plugin_dir_path( __FILE__ ) . 'partials/google-analytic-chart.php' );
 	    die();
 	}
- 
 
-	public function prev_view ($startdate,$enddate, $analytics){
-    $analytics = $this->initialize_analytic();
-  
-	   // $r = ($month != '')? $month:'month';
-	    $VIEW_ID = $this->view_id;
-
-	    $start =  strtotime('2022-07-13');
-        $date_add_year = strtotime("-1 month",$start);
-        $date_add = strtotime('-10 days',$date_add_year);
-        $prestent_date_start = date('Y-m-d', $date_add); 
-        
-        $end = strtotime('2022-07-19');
-        $date_add_year = strtotime("-1 month",$end);
-        $prestent_date_end = date('Y-m-d', $date_add_year);   
-       
-        
-        $period = new DatePeriod(
-                 new DateTime($prestent_date_start),
-                 new DateInterval('P1D'),
-                 new DateTime($prestent_date_end)
-            );
-        
-         foreach($period as $key => $perioded){
-            
-              
-          // Create the DateRange object.
-         $dateRange = new Google_Service_AnalyticsReporting_DateRange();
-         $dateRange->setStartDate(''.$perioded->format("Y-m-d").'');
-         $dateRange->setEndDate(''. $perioded->format("Y-m-d").''); 
-    
-          // Create the Metrics object.
-          $sessions = new Google_Service_AnalyticsReporting_Metric();
-          $sessions->setExpression("ga:sessions");
-          $sessions->setAlias("sessions");
-          
-          // Create the Metrics object. users
-          $users = new Google_Service_AnalyticsReporting_Metric();
-          $users->setExpression("ga:users");
-          $users->setAlias("users");
-          
-          $pageviews = new Google_Service_AnalyticsReporting_Metric();
-          $pageviews->setExpression("ga:pageviews");
-          $pageviews->setAlias("pageviews");
-          
-          $uniquePageviews = new Google_Service_AnalyticsReporting_Metric();
-          $uniquePageviews->setExpression("ga:uniquePageviews");
-          $uniquePageviews->setAlias("uniquePageviews");
-          
-          $avgTimeOnPage = new Google_Service_AnalyticsReporting_Metric();
-          $avgTimeOnPage->setExpression("ga:avgTimeOnPage");
-          $avgTimeOnPage->setAlias("avgTimeOnPage");
-          
-          $dateHour = new Google_Service_AnalyticsReporting_Metric();
-          $dateHour->setExpression("ga:dateHour");
-          $dateHour->setAlias("dateHour");
-          
-         
-          // Create the Metrics object.
-          $avgSessionDuration = new Google_Service_AnalyticsReporting_Metric();
-          $avgSessionDuration->setExpression("ga:avgSessionDuration");
-          $avgSessionDuration->setAlias("avgSessionDuration");
-          
-          // Create the Metrics object.
-          $avgPageLoadTime = new Google_Service_AnalyticsReporting_Metric();
-          $avgPageLoadTime->setExpression("ga:avgPageLoadTime");
-          $avgPageLoadTime->setAlias("avgPageLoadTime");
-          
-          $pageviewsPerSession = new Google_Service_AnalyticsReporting_Metric();
-          $pageviewsPerSession->setExpression("ga:pageviewsPerSession");
-          $pageviewsPerSession->setAlias("pageviewsPerSession");
-
-          
-          // Create the ReportRequest object.
-          $request = new Google_Service_AnalyticsReporting_ReportRequest();
-          $request->setViewId($VIEW_ID);
-          $request->setDateRanges(array($dateRange,$dateRange));
-          $request->setMetrics(array($sessions,$users,$avgSessionDuration,$avgPageLoadTime,$pageviews,$uniquePageviews,$avgTimeOnPage,$pageviewsPerSession));
-        
-          $body = new Google_Service_AnalyticsReporting_GetReportsRequest();
-          $body->setReportRequests( array( $request) );
-          
-          $data = array('report'=> $analytics->reports->batchGet( $body ), 'range'=> array('start'=>$startdate,'end'=>$enddate));
-         
-          $avgTimeOnPage = $data['report']['reports'][0]['data']['totals'][0]['values'][2];         
-          $avgPageLoadTime = $data['report']['reports'][0]['data']['totals'][0]['values'][3];
-          $totla_pageview = $data['report']['reports'][0]['data']['totals'][0]['values'][4];
-          $uniquePageviews = $data['report']['reports'][0]['data']['totals'][0]['values'][5];
-          $avgTimeOnPage = $data['report']['reports'][0]['data']['totals'][0]['values'][6];
-          $pageviewsPer = $data['report']['reports'][0]['data']['totals'][0]['values'][7];
-         
-           
-          $data_ = array(
-                'pageview'=>array('total'=>$totla_pageview), 
-                'uniquePageviews'=>array('total'=>$uniquePageviews),
-                'avgTimeOnPage'=>array('total'=>$avgTimeOnPage),
-                'avgPageLoadTime'=>array('total'=>$avgPageLoadTime),
-                'avgSessionDuration'=>array('total'=>$avgSessionDuration),
-                'AvgPageviewsperVisitor'=>array('total'=>$pageviewsPer),
-                );
-                
-          
-            $g[]=$data_; 
-        }     
-            
-        return $g;    
-	}
   function chart_datas($start,$end){
 
 
@@ -994,7 +889,14 @@ class Google_Analytic_Admin {
 		    'analytics', 
 		    array($this,'my_google_analytic'),'dashicons-chart-line',9
 		);
-
+    add_submenu_page(
+      'analytics',              
+      'Analytics Settings',                     
+      'Analytics Settings',                     
+      'manage_options',                  
+      'analytics-settings',              
+      array($this,'analytics_settings_callback')
+    );
 	}
   function Query($query){
     $cURLConnection2 = curl_init();
@@ -1007,7 +909,123 @@ class Google_Analytic_Admin {
 
         $jsonArrayResponse2 = json_decode($phoneList2);
 
-        return $jsonArrayResponse2;
-        
+        return $jsonArrayResponse2; 
+  }
+
+  /**
+   * Call Settings Function
+   */
+  function analytics_settings_callback(){
+    // Output Settings
+
+    include( plugin_dir_path( __FILE__ ) . 'partials/google-analytics-settings.php' );
+  }
+  function setup_init_options(){
+    add_settings_section(
+      'analytics_settings_section',
+      '<img src="https://wordpress.purplebugprojects.com/wp-content/uploads/2021/10/mfm_logo_tiny.png">',
+      array($this,'analytics_form_settings_callback'),
+      'analytics_settings_option'
+    );
+    add_settings_field( 
+      'client_id',
+      'Client ID',
+      array($this,'client_id_callback'),
+      'analytics_settings_option',
+      'analytics_settings_section'
+    );
+    add_settings_field( 
+      'client_secret',
+      'Client Secret',
+      array($this,'client_secret_callback'),
+      'analytics_settings_option',
+      'analytics_settings_section'
+    );
+    add_settings_field( 
+      'redirect_uri',
+      'Redirect URI',
+      array($this,'redirect_uri_callback'),
+      'analytics_settings_option',
+      'analytics_settings_section'
+    );
+    add_settings_field( 
+      'developer_key',
+      'Developer Key',
+      array($this,'developer_key_callback'),
+      'analytics_settings_option',
+      'analytics_settings_section'
+    );
+    add_settings_field( 
+      'ga_id',
+      'GA ID',
+      array($this,'ga_id_callback'),
+      'analytics_settings_option',
+      'analytics_settings_section'
+    );
+    register_setting( 'analytics_settings_option', 'analytics_settings_section' );
+    register_setting( 'analytics_settings_option', 'client_id' );
+    register_setting( 'analytics_settings_option', 'client_secret' );
+    register_setting( 'analytics_settings_option', 'redirect_uri' );
+    register_setting( 'analytics_settings_option', 'developer_key' );
+    register_setting( 'analytics_settings_option', 'ga_id' );
+  }
+  /*
+  * Analytics Callback Functions
+  */
+  function analytics_form_settings_callback(){
+    $output = '';
+    $output .= '<div class="wrap">';
+    $output .= '<img src="https://wordpress.purplebugprojects.com/wp-content/uploads/2021/10/mfm_logo_tiny.png">';
+    $output .= '</div>';
+    // echo $output;
+  }
+  function client_id_callback(){
+    $client_id =  get_option( 'client_id','' );
+    $html = '<input placeholder="Client ID" style="width: 50%;" type="text" id="client_id" name="client_id" value="'.$client_id.'" />'; 
+    echo $html;
+  }
+  function client_secret_callback(){
+    $client_secret =  get_option( 'client_secret','' );
+    // $client_secret_encrypted = str_repeat("*", strlen($client_secret)); 
+    $html = '<input placeholder="Client Secret" style="width: 50%;" type="text" id="client_secret" name="client_secret" value="'.$client_secret.'" />'; 
+    echo $html;
+  }
+  function redirect_uri_callback(){
+    $redirect_uri =  get_option( 'redirect_uri','' );
+    $html = '<input placeholder="Redirect URI" style="width: 50%;" type="text" id="redirect_uri" name="redirect_uri" value="'.$redirect_uri.'" />'; 
+    echo $html;
+  }
+  function developer_key_callback(){
+    $developer_key =  get_option( 'developer_key','' );
+    // $developer_key_encrypted = str_repeat("*", strlen($developer_key)); 
+    $html = '<input placeholder="Developer Key" style="width: 50%;" type="text" id="developer_key" name="developer_key" value="'.$developer_key.'" />'; 
+    echo $html;
+  }
+  function ga_id_callback(){
+    $ga_id =  get_option( 'ga_id','' );
+    // $ga_id_encrypted = str_repeat("*", strlen($ga_id)); 
+    $html = '<input placeholder="ga:12345678" style="width: 50%;" type="text" id="ga_id" name="ga_id" value="'.$ga_id.'" />'; 
+    echo $html;
+  }
+  /**
+   * Check if Credential are present
+   */
+  function check_credentials(){
+    $client_id =  get_option( 'client_id','' );
+    $client_secret =  get_option( 'client_secret','' );
+    $redirect_uri =  get_option( 'redirect_uri','' );
+    $developer_key =  get_option( 'developer_key','' );
+    
+    $credentials = [
+      $client_id,
+      $client_secret,
+      $redirect_ur,
+      $developer_key
+    ];
+    foreach($credentials as $data){
+      if($data == '' || $data == null){
+        return 'false';
+      }
+    }
   }
 }

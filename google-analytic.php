@@ -95,13 +95,19 @@ add_action('rest_api_init', function () {
 		));
   });
   function getAPIData($request) {
+	// Get Credentials
+	$client_id =  get_option( 'client_id','' );
+	$client_secret =  get_option( 'client_secret','' );
+	$redirect_uri =  get_option( 'redirect_uri','' );
+	$developer_key =  get_option( 'developer_key','' );
+
 	require_once GOOGLE_PATH. '/google-api/vendor/autoload.php';
 	$gClient = new Google_Client();
-	$gClient->setClientId("432292128512-fcikru3ubou70aci5ggnbv9i2co9hj0l.apps.googleusercontent.com");
-	$gClient->setClientSecret("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");
+	$gClient->setClientId($client_id);
+	$gClient->setClientSecret($client_secret);
 	$gClient->setApplicationName("Vicode Media Login");
-	$gClient->setRedirectUri("https://wordpress.purplebugprojects.com/wp-json/hello-elementor/v1/access-token");
-	$gClient->setDeveloperKey('AIzaSyBtWxSXvd_cuyettZ8JwgJUeFvVDBK6amQ');
+	$gClient->setRedirectUri($redirect_uri );
+	$gClient->setDeveloperKey($developer_key);
 	$gClient->setAccessType('offline');
 	// $gClient->addScope("https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email");
 	$gClient->setScopes(['https://www.googleapis.com/auth/analytics.readonly','https://www.googleapis.com/auth/analytics']);
@@ -110,12 +116,36 @@ add_action('rest_api_init', function () {
 	$parameters = $request->get_params();
 	if (isset($parameters['code'])) {
 		$token = $gClient->fetchAccessTokenWithAuthCode($parameters['code']);
+		$_SESSION['token'] = $token ;
 	}
 	update_option('gapi_access_token',$token['access_token']);
-	header("Location: ".get_site_url()."/wp-admin/admin.php?page=analytics");
+    header("Location: ".get_site_url()."/wp-admin/admin.php?page=analytics");
 	exit();
+	//   http://pinoybuilders.test/wp-json/hello-elementor/v1/access-token
   }
-//   http://pinoybuilders.test/wp-json/hello-elementor/v1/access-token
 
-
+    /**
+   * Check if Credential are present
+   */
+  function check_credentials(){
+    $client_id =  get_option( 'client_id','' );
+    $client_secret =  get_option( 'client_secret','' );
+    $redirect_uri =  get_option( 'redirect_uri','' );
+    $developer_key =  get_option( 'developer_key','' );
+    
+    $credentials = [
+      $client_id,
+      $client_secret,
+      $redirect_ur,
+      $developer_key
+    ];
+    foreach($credentials as $data){
+      if($data == '' || $data == null){
+        // header("Location: ".get_site_url()."/wp-admin/admin.php?page=analytics-settings");
+        // return 'false';
+		// exit();
+      }
+    }
+  }
+//   add_action('admin_init','check_credentials');
 

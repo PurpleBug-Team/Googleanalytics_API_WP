@@ -147,8 +147,7 @@
 		<div class="analytics-content analytics-main-pane ng-scope">
 			<!-- Content Header-->
  				<?php
-				// check if token is expired
-				$token = get_option('gapi_access_token',$token['access_token']);
+			 $token = get_option('gapi_access_token','');
 				if(!isset($token)){
 					include( plugin_dir_path( __FILE__ ) . 'google-api-login.php' );
 					die();
