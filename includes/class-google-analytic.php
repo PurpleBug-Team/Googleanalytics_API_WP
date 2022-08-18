@@ -185,7 +185,11 @@ class Google_Analytic {
 	    $this->loader->add_action( 'admin_head', $plugin_admin, 'analytic_modal' );
 
 	    $this->loader->add_action( 'wp_ajax_channel_analytic', $plugin_admin, 'channel_analytic' );
-	    $this->loader->add_action( 'wp_ajax_nopriv_channel_analytic', $plugin_admin, 'channel_analytic' );
+	    $this->loader->add_action( 'wp_ajax_nopriv_channel_analytic', $plugin_admin, 'channel_analytic' ); 
+
+
+	    $this->loader->add_action( 'wp_ajax_analytics_credentials', $plugin_admin, 'analytics_credentials' );
+	    $this->loader->add_action( 'wp_ajax_nopriv_analytics_credentials', $plugin_admin, 'analytics_credentials' ); 
 		
 		
 

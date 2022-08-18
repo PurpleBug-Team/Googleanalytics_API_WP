@@ -1028,4 +1028,12 @@ class Google_Analytic_Admin {
       }
     }
   }
+
+  function analytics_credentials(){
+    $datas = $_POST['data'];
+    foreach($datas as $key => $value){
+      update_option($key,$value);
+    }
+    wp_send_json('success');
+  }
 }
