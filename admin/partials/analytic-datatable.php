@@ -22,13 +22,13 @@
 	}
 
 
-	$social = $this->Query('https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids=ga%3A193221711&dimensions=ga%3AfullReferrer&metrics=ga%3AbounceRate%2Cga%3AavgSessionDuration%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&filters=ga%3AhasSocialSourceReferral%3D%3DYes&start-date='.$start.'&end-date='.$end.'');
+	$social = $this->Query('https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids='.$this->ga_id.'&dimensions=ga%3AfullReferrer&metrics=ga%3AbounceRate%2Cga%3AavgSessionDuration%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&filters=ga%3AhasSocialSourceReferral%3D%3DYes&start-date='.$start.'&end-date='.$end.'');
 
-	$organic = $this->Query('https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids=ga%3A193221711&dimensions=ga%3AsocialNetwork&metrics=ga%3AbounceRate%2Cga%3AavgSessionDuration%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&filters=ga%3AhasSocialSourceReferral%3D%3DYes&start-date='.$start.'&end-date='.$end.'');
+	$organic = $this->Query('https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids='.$this->ga_id.'&dimensions=ga%3AsocialNetwork&metrics=ga%3AbounceRate%2Cga%3AavgSessionDuration%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&filters=ga%3AhasSocialSourceReferral%3D%3DYes&start-date='.$start.'&end-date='.$end.'');
 
-	$direct = $this->Query('https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids=ga%3A193221711&dimensions=ga%3AsocialNetwork&metrics=ga%3AbounceRate%2Cga%3AavgSessionDuration%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&start-date='.$start.'&end-date='.$end.'');
+	$direct = $this->Query('https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids='.$this->ga_id.'&dimensions=ga%3AsocialNetwork&metrics=ga%3AbounceRate%2Cga%3AavgSessionDuration%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&start-date='.$start.'&end-date='.$end.'');
 
-	$referral = $this->Query('https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids=ga%3A193221711&dimensions=ga%3AfullReferrer&metrics=ga%3AbounceRate%2Cga%3AavgSessionDuration%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&filters=ga%3AhasSocialSourceReferral%3D%3DNo&start-date='.$start.'&end-date='.$end.'');
+	$referral = $this->Query('https://www.googleapis.com/analytics/v3/data/ga?access_token='.$this->access_token.'&ids='.$this->ga_id.'&dimensions=ga%3AfullReferrer&metrics=ga%3AbounceRate%2Cga%3AavgSessionDuration%2Cga%3Apageviews%2Cga%3AuniquePageviews%2Cga%3AavgTimeOnPage&filters=ga%3AhasSocialSourceReferral%3D%3DNo&start-date='.$start.'&end-date='.$end.'');
 
  
 	

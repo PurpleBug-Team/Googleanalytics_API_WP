@@ -8,13 +8,14 @@ $client_id =  get_option( 'client_id','' );
 $client_secret =  get_option( 'client_secret','' );
 $redirect_uri =  get_option( 'redirect_uri','' );
 $developer_key =  get_option( 'developer_key','' );
+$ga_id =  get_option( 'ga_id','' );
 ?>
 <style>
 .flex-col{
 	display:flex;
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-	font-family: Roboto;
-    font-weight: 700;
+	/* font-family: Roboto; */
+    font-weight: 600;
 }
 .left-col{
 	width:60%;
@@ -39,7 +40,7 @@ $developer_key =  get_option( 'developer_key','' );
     width: -webkit-fill-available;
     border-radius: 8px;
     height: 45px;
-    font-family: Roboto;
+    /* font-family: Roboto; */
 }
 .api-input-group{
 	display: grid;
@@ -88,6 +89,10 @@ $developer_key =  get_option( 'developer_key','' );
 					<label for="developer_key">Developer Key</label>
 					<input type="text" placeholder="Developer Key" name="developer_key" value="<?php echo $developer_key  ?>" required>
 				</div>
+				<div class="api-input-group">
+					<label for="developer_key">GA ID</label>
+					<input type="text" placeholder="GA ID" name="ga_id" value="<?php echo $ga_id  ?>" required>
+				</div>
 				<div class="analytics_logo">
 					<button type="submit" id="connect_analytics_api">Save</button>
 				</div>
@@ -107,11 +112,7 @@ $developer_key =  get_option( 'developer_key','' );
                  type : "POST",
                  url : ajaxurl,
                  data : {action: "analytics_credentials",data:values},
-                //  beforeSend: function(response){
-				
-				// },
                  success: function(response) {
-					
 					location.reload();
                 }
             }); 
