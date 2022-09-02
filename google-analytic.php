@@ -109,7 +109,6 @@ add_action('rest_api_init', function () {
 	$gClient->setRedirectUri($redirect_uri );
 	$gClient->setDeveloperKey($developer_key);
 	$gClient->setAccessType('offline');
-	// $gClient->addScope("https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email");
 	$gClient->setScopes(['https://www.googleapis.com/auth/analytics.readonly','https://www.googleapis.com/auth/analytics']);
 	// login URL
 	$login_url = $gClient->createAuthUrl();
@@ -121,31 +120,6 @@ add_action('rest_api_init', function () {
 	update_option('gapi_access_token',$token['access_token']);
     header("Location: ".get_site_url()."/wp-admin/admin.php?page=analytics");
 	exit();
-	//   http://pinoybuilders.test/wp-json/hello-elementor/v1/access-token
   }
 
-    /**
-   * Check if Credential are present
-   */
-  function check_credentials(){
-    $client_id =  get_option( 'client_id','' );
-    $client_secret =  get_option( 'client_secret','' );
-    $redirect_uri =  get_option( 'redirect_uri','' );
-    $developer_key =  get_option( 'developer_key','' );
-    
-    $credentials = [
-      $client_id,
-      $client_secret,
-      $redirect_ur,
-      $developer_key
-    ];
-    foreach($credentials as $data){
-      if($data == '' || $data == null){
-        // header("Location: ".get_site_url()."/wp-admin/admin.php?page=analytics-settings");
-        // return 'false';
-		// exit();
-      }
-    }
-  }
-//   add_action('admin_init','check_credentials');
 

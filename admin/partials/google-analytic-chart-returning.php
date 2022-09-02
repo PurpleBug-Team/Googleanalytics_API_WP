@@ -78,8 +78,12 @@ jQuery('select.chartlayout').change(function() {
                  type : "GET",
                  url : ajaxurl,
                  data : {action: "change_chart",tab:true,metrics:value,range:false,start:start,end:end,prevdate:prevdate},
+                 beforeSend:function(res){
+                    jQuery('#loading').css('display','block');
+                 },
                  success: function(response) {
                    jQuery('.my-chart').html(response);
+                   jQuery('#loading').css('display','none');
                     console.log(prevdate);
                 }
             }); 
