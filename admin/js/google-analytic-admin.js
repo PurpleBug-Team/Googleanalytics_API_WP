@@ -51,10 +51,14 @@ jQuery('select.chartlayout').change(function() {
                  type : "GET",
                  url : ajaxurl,
                  data : {action: "change_chart",metrics:value,range:false,start:start,end:end,prevdate:prevdate},
+                 beforeSend:function(res){
+                    jQuery('#loading').css('display','block');
+                 },
                  success: function(response) {
                    jQuery('.my-chart').html(response);
                      //console.log(response);
                     console.log(prevdate+'kjikkjkjk');
+                    jQuery('#loading').css('display','none');
                     //chart();
                 }
             }); 
@@ -122,7 +126,12 @@ var date_ = new Date();
 var date_present = new Date();
 date_present.setDate(date_present.getDate() + 7); 
 
-
+jQuery('#generaldate').on('change',function(){
+    var custom_daterange = jQuery('select#generaldate').val();
+    var new_date =custom_daterange.replace('-', '');
+    var today_date = new Date();
+    var date_range_application = today_date.setDate(today_date.getDate()-new_date);
+})
 //chart('false',date_,date_present);
 
     jQuery('.daterange').daterangepicker({
@@ -140,6 +149,7 @@ date_present.setDate(date_present.getDate() + 7);
         jQuery('.analytics-content').css('opacity','.5');
        // chart(true,start.format('YYYY-MM-DD'),end.format('YYYY-MM-DD'));
     	var prevdate = jQuery('select#generaldate').val();
+        console.log(start);
     
         jQuery.ajax({
     		 type : "GET",
