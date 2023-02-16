@@ -115,11 +115,11 @@
             <div class="dropdown-wrapper button-dropdown-wrapper">
                 <div class="dropdown">
                   <select name="chartlayout" class="chartlayout" >
-                    <option value="ga:pageviews">Page views</option>
+                    <option value="ga:pageviews">Pageviews</option>
                     <option value="ga:uniquePageviews">Unique Visitors</option>
                     <option value="ga:pageLoadTime">Engagement Rate</option>
                     <option value="ga:avgTimeOnPage">Average Attention Time</option>
-                    <option value="ga:cohortPageviewsPerUser">Avg. Page views per Visitor</option>
+                    <option value="ga:cohortPageviewsPerUser">Avg. Pageviews per Visitor</option>
 
                   </select>
                      
@@ -153,7 +153,7 @@
           <tr>
             <th>&nbsp;</th>
             <th>Articles Viewed</th>
-            <th>Page views</th>
+            <th>Pageviews</th>
             <th>Unique Visitors</th>
            
             <th>Avg. Attn Time</th>
